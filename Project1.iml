@@ -10,7 +10,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/OneDrive/Documents/Project1/New folder/sqljdbc_9.2/enu/mssql-jdbc-9.2.1.jre15.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/sqljdbc_9.2/enu/mssql-jdbc-9.2.1.jre15.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
