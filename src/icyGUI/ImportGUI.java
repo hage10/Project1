@@ -1,21 +1,14 @@
 package icyGUI;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import database.Controller;
 
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.Font;
-import javax.swing.JTextField;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import java.sql.*;
 public class ImportGUI extends JFrame {
     Controller controller = new Controller();
 
@@ -31,29 +24,32 @@ public class ImportGUI extends JFrame {
         getContentPane().setLayout(null);
 
         //Label notes chi dan
-        JLabel lblImportNote = new JLabel("Notes:\r\nInput can be accepted only when it's in CSV file format");
+        JLabel lblImportNote = new JLabel("Notes:\r\n Input can be accepted only when it's in CSV file format");
         lblImportNote.setFont(new Font("Arial", Font.PLAIN, 13));
-        lblImportNote.setBounds(25, 11, 410, 53);
+        lblImportNote.setBounds(25, 7, 410, 53);
         getContentPane().add(lblImportNote);
 
         //Button kich hoat
-        JButton btnConfirm = new JButton("Confirm");
-        btnConfirm.setBounds(25, 68, 90, 30);
+        JButton btnConfirm = new JButton("OK");
+        btnConfirm.setBounds(25, 95, 90, 30);
         getContentPane().add(btnConfirm);
 
         //Textfield voi file path
         textFilePath = new JTextField();
-        textFilePath.setBounds(125, 68, 438, 30);
+        textFilePath.setBounds(25, 55, 460, 32);
         getContentPane().add(textFilePath);
         textFilePath.setColumns(10);
+//        textFilePath.setBorder(null);
 
         //Button chon file
-        JButton btnFileChooser = new JButton("...");
-        btnFileChooser.setBounds(570, 68, 30, 30);
+        ImageIcon iconImport = new ImageIcon(System.getProperty("user.dir")+"\\rsc\\browser1.png");
+        JButton btnFileChooser = new JButton("Browser",iconImport);
+        btnFileChooser.setBounds(500, 55, 110, 32);
         getContentPane().add(btnFileChooser);
 
         //
         this.setVisible(true);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
 
         //Xu ly event

@@ -16,7 +16,7 @@ public class Controller {
     public void Import(String a) throws ClassNotFoundException, SQLException{
         Connection connection = getConnect();
 
-        a = "bulk insert CVEList from \'" + a + "\' with(fieldterminator = \',\', rowterminator = \'\\n\', Format = \'CSV\')";
+        a = "bulk insert " + DatabaseInfo.dbTable + " from \'" + a + "\' with ( fieldterminator = \',\', rowterminator = \'0x0a\', datafiletype = \'char\', firstrow = 10)";
         Statement stmt = connection.createStatement();
         stmt.executeUpdate(a);
     }
@@ -34,9 +34,78 @@ public class Controller {
         Vector<Vector<String>> data = new Vector<>();
 
         Connection connection = getConnect();
-        PreparedStatement stmt = connection.prepareStatement("Select * from CVEList Where Id = ?");
-        stmt.setString(1, a);
-        ResultSet rs = stmt.executeQuery();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("Select * from " + DatabaseInfo.dbTable + " where Id like \'%" + a + "%\' order by Id ASC");
+
+        while (rs.next()) {
+            String Sid = rs.getString(1);
+            String Ssta = rs.getString(2);
+            String Sdes = rs.getString(3);
+            String Sref = rs.getString(4);
+            String Sphase = rs.getString(5);
+            String Svotes = rs.getString(6);
+            String Scomments = rs.getString(7);
+
+            Vector<String> temp = new Vector<>();
+            temp.add(Sid);
+            temp.add(Ssta);
+            temp.add(Sdes);
+            temp.add(Sref);
+            temp.add(Sphase);
+            temp.add(Svotes);
+            temp.add(Scomments);
+
+            data.add(temp);
+
+        }
+        connection.close();
+
+        return data;
+    }
+
+    //Ham xuat data trong mot khoang Year
+    public Vector<Vector<String>> getYearRange(String a,String b) throws ClassNotFoundException, SQLException{
+        Vector<Vector<String>> data = new Vector<>();
+
+        Connection connection = getConnect();
+        Statement stmt = connection.createStatement();
+        int c = Integer.parseInt(b);
+        b = Integer.toString(c+1);
+        ResultSet rs = stmt.executeQuery("Select * from " + DatabaseInfo.dbTable + " where Id between \'CVE-"+a+"\' and \'CVE-"+b+"\' order by Id ASC");
+
+        while (rs.next()) {
+            String Sid = rs.getString(1);
+            String Ssta = rs.getString(2);
+            String Sdes = rs.getString(3);
+            String Sref = rs.getString(4);
+            String Sphase = rs.getString(5);
+            String Svotes = rs.getString(6);
+            String Scomments = rs.getString(7);
+
+            Vector<String> temp = new Vector<>();
+            temp.add(Sid);
+            temp.add(Ssta);
+            temp.add(Sdes);
+            temp.add(Sref);
+            temp.add(Sphase);
+            temp.add(Svotes);
+            temp.add(Scomments);
+
+            data.add(temp);
+
+        }
+        connection.close();
+
+        return data;
+    }
+
+    //Ham xuat data voi year, id
+    public Vector<Vector<String>> getRangeByIdYear(String a,String b, String c) throws ClassNotFoundException, SQLException{
+        Vector<Vector<String>> data = new Vector<>();
+
+        Connection connection = getConnect();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("Select * from " + DatabaseInfo.dbTable + " where Id between \'CVE-" + c + "-" + a +"\' and \'CVE-" + c + "-" + b + "\' order by Id ASC ");
 
         while (rs.next()) {
             String Sid = rs.getString(1);
@@ -71,7 +140,7 @@ public class Controller {
         Connection connection = getConnect();
 
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("Select * from CVEList");
+        ResultSet rs = stmt.executeQuery("Select * from " + DatabaseInfo.dbTable + " order by Id ASC");
         while (rs.next()) {
             String Sid = rs.getString(1);
             String Ssta = rs.getString(2);
