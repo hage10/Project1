@@ -22,7 +22,7 @@ public class Controller {
     }
 
     //Ham del du lieu
-    public void DelAll() throws ClassNotFoundException,SQLException{
+    public void delAll() throws ClassNotFoundException,SQLException{
         Connection connection = getConnect();
 
         Statement stmt = connection.createStatement();
@@ -64,7 +64,7 @@ public class Controller {
     }
 
     //Ham xuat data trong mot khoang Year
-    public Vector<Vector<String>> getYearRange(String a,String b) throws ClassNotFoundException, SQLException{
+    public Vector<Vector<String>> getByYearRange(String a,String b) throws ClassNotFoundException, SQLException{
         Vector<Vector<String>> data = new Vector<>();
 
         Connection connection = getConnect();
@@ -100,7 +100,7 @@ public class Controller {
     }
 
     //Ham xuat data voi year, id
-    public Vector<Vector<String>> getRangeByIdYear(String a,String b, String c) throws ClassNotFoundException, SQLException{
+    public Vector<Vector<String>> getByIdYearRange(String a,String b, String c) throws ClassNotFoundException, SQLException{
         Vector<Vector<String>> data = new Vector<>();
 
         Connection connection = getConnect();
@@ -161,6 +161,7 @@ public class Controller {
 
             data.add(temp);
         }
+        connection.close();
         return data;
     }
 

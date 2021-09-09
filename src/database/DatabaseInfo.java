@@ -1,6 +1,5 @@
 package database;
 
-import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -9,11 +8,9 @@ import java.io.IOException;
 
 public class DatabaseInfo {
     public static String driverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-
     public static String dbURL = "";
-
-    public static String dbUser = "";
-    public static String dbPass = "";
+    protected static String dbUser = "";
+    protected static String dbPass = "";
     public static String dbTable = "";
 
     public static void getSetting() throws IOException {
@@ -31,7 +28,11 @@ public class DatabaseInfo {
         buff1.flush();
         buff1.close();
     }
-
+    
+    public static void setAccount(String a,String b) throws IOException{
+		DatabaseInfo.dbUser = a;
+		DatabaseInfo.dbPass = b;
+    }
 }
 
 

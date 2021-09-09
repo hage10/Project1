@@ -8,7 +8,6 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.Objects;
 import java.util.Vector;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -46,56 +45,49 @@ public class MainGUI extends JFrame {
         scrollPane1.setViewportView(table);
 
         //Tao button
-        ImageIcon iconExport = new ImageIcon(System.getProperty("user.dir")+"\\rsc\\export.png");
-        JButton btnExportAll = new JButton("Export Data",iconExport);
-        btnExportAll.setBorder(null);
+        JButton btnExportAll = new JButton("Export Data", new ImageIcon(System.getProperty("user.dir")+"\\rsc\\export.png"));
         btnExportAll.setBorderPainted(false);
         btnExportAll.setContentAreaFilled(false);
         btnExportAll.setOpaque(false);
+        btnExportAll.setFocusable(false);
         btnExportAll.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
-        btnExportAll.setBounds(10, 10, 120, 32);
+        btnExportAll.setBounds(10, 7, 150, 40);
         getContentPane().add(btnExportAll);
 
-        ImageIcon iconImport = new ImageIcon(System.getProperty("user.dir")+"\\rsc\\import.png");
-        JButton btnImport = new JButton("Import File",iconImport);
-         btnImport.setBorder(null);
+        JButton btnImport = new JButton("Import File", new ImageIcon(System.getProperty("user.dir")+"\\rsc\\import.png"));
         btnImport.setBorderPainted(false);
         btnImport.setContentAreaFilled(false);
         btnImport.setOpaque(false);
-        btnImport.setBounds(150, 10, 150, 32);
+        btnImport.setFocusable(false);
+        btnImport.setBounds(170, 7, 150, 40);
         btnImport.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
         getContentPane().add(btnImport);
-
-
-        ImageIcon iconFind  = new ImageIcon(System.getProperty("user.dir")+"\\rsc\\loupe2.png");
-        JButton btnFind= new JButton(iconFind);
-        btnFind.setBorder(null);
-        btnFind.setBorderPainted(false);
-        btnFind.setContentAreaFilled(false);
-        btnFind.setOpaque(false);
-        btnFind.setBounds(270, 59, 32, 32);
-        getContentPane().add(btnFind);
-
-
+        
         ImageIcon iconDel = new ImageIcon(System.getProperty("user.dir")+"\\rsc\\delete.png");
         JButton btnDelAll = new JButton("Delete data",iconDel);
         btnDelAll.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
-        btnDelAll.setBorder(null);
         btnDelAll.setBorderPainted(false);
         btnDelAll.setContentAreaFilled(false);
         btnDelAll.setOpaque(false);
-        btnDelAll.setBounds(300, 10, 150, 32);
+        btnDelAll.setFocusable(false);
+        btnDelAll.setBounds(330, 7, 150, 40);
         getContentPane().add(btnDelAll);
 
+        JButton btnFind= new JButton(new ImageIcon(System.getProperty("user.dir")+"\\rsc\\loupe2.png"));
+        btnFind.setBorderPainted(false);
+        btnFind.setContentAreaFilled(false);
+        btnFind.setOpaque(false);
+        btnFind.setFocusable(false);
+        btnFind.setBounds(265, 59, 30, 30);
+        getContentPane().add(btnFind);
 
-        ImageIcon iconNote = new ImageIcon(System.getProperty("user.dir")+"\\rsc\\note.png");
-        JButton btnNote = new JButton("Note",iconNote);
+        JButton btnNote = new JButton("Note", new ImageIcon(System.getProperty("user.dir")+"\\rsc\\note.png"));
         btnNote.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
-        btnNote.setBorder(null);
         btnNote.setBorderPainted(false);
         btnNote.setContentAreaFilled(false);
         btnNote.setOpaque(false);
-        btnNote.setBounds(665, 10, 100, 32);
+        btnNote.setFocusable(false);
+        btnNote.setBounds(665, 7, 110, 40);
         getContentPane().add(btnNote);
 
         //Tao textfield nhap du lieu
@@ -114,13 +106,14 @@ public class MainGUI extends JFrame {
         JTextField textField3 = new JTextField();
         textField3.setVisible(false);
         textField3.setColumns(10);
-        textField3.setBounds(700, 59, 72, 30);
+        textField3.setBounds(690, 59, 72, 30);
         getContentPane().add(textField3);
 
         //Tao comboBox
         String s1[] = {"Year or ID", "Year range", "Year and ID"};
         JComboBox comboBox = new JComboBox(s1);
         comboBox.setBounds(105, 59, 150, 30);
+        comboBox.setFocusable(false);
         getContentPane().add(comboBox);
 
         //Label
@@ -138,26 +131,25 @@ public class MainGUI extends JFrame {
         JLabel lblField3 = new JLabel("Year:");
         lblField3.setFont(new Font("Arial Rounded MT Bold", Font.ITALIC, 13));
         lblField3.setVisible(false);
-        lblField3.setBounds(660, 59, 40, 30);
+        lblField3.setBounds(640, 59, 40, 30);
         getContentPane().add(lblField3);
-
-
-
-        JLabel backGround = new JLabel(new ImageIcon(Toolkit.getDefaultToolkit().getImage(System.getProperty("user.dir")+ "\\rsc\\bg8.png")));
-        backGround.setBounds(0, 0, 800, 600);
-        getContentPane().add(backGround);
+        
+        //Background
+        JLabel lblBackGround = new JLabel(new ImageIcon(Toolkit.getDefaultToolkit().getImage(System.getProperty("user.dir")+ "\\rsc\\bg8.png")));
+        lblBackGround.setBounds(0, 0, 800, 600);
+        getContentPane().add(lblBackGround);
 
         //Tao scrollPane2
         JScrollPane scrollPane2 = new JScrollPane();
         scrollPane2.setBounds(10, 411, 764, 139);
-        getContentPane().add(scrollPane2);
+        lblBackGround.add(scrollPane2);
 
         //Set viewport textArea cho scrollPane2
         JTextArea textArea = new JTextArea();
         scrollPane2.setViewportView(textArea);
         textArea.setEditable(false);
         textArea.setLineWrap(true);
-
+        textArea.setText("Welcome to IcyTool\nChoose a button above to start...");
 
         //
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(System.getProperty("user.dir")+"\\rsc\\icon.jpg"));
@@ -168,7 +160,53 @@ public class MainGUI extends JFrame {
 
 
         //Xu ly cac event
-
+        
+        //Event tao hieu ung cho cac button
+        btnExportAll.addMouseListener(new MouseAdapter() {
+        	public void mouseEntered(MouseEvent e) {
+        		btnExportAll.setBorderPainted(true);
+        	}
+        	public void mouseExited(MouseEvent e) {
+        		btnExportAll.setBorderPainted(false);
+        	}
+        });
+        
+        btnImport.addMouseListener(new MouseAdapter() {
+        	public void mouseEntered(MouseEvent e) {
+        		btnImport.setBorderPainted(true);
+        	}
+        	public void mouseExited(MouseEvent e) {
+        		btnImport.setBorderPainted(false);
+        	}
+        });
+        
+        btnDelAll.addMouseListener(new MouseAdapter() {
+        	public void mouseEntered(MouseEvent e) {
+        		btnDelAll.setBorderPainted(true);
+        	}
+        	public void mouseExited(MouseEvent e) {
+        		btnDelAll.setBorderPainted(false);
+        	}
+        });
+        
+        btnFind.addMouseListener(new MouseAdapter() {
+        	public void mouseEntered(MouseEvent e) {
+        		btnFind.setBorderPainted(true);
+        	}
+        	public void mouseExited(MouseEvent e) {
+        		btnFind.setBorderPainted(false);
+        	}
+        });
+        
+        btnNote.addMouseListener(new MouseAdapter() {
+        	public void mouseEntered(MouseEvent e) {
+        		btnNote.setBorderPainted(true);
+        	}
+        	public void mouseExited(MouseEvent e) {
+        		btnNote.setBorderPainted(false);
+        	}
+        });
+        
         //Event nut Export
         btnExportAll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
@@ -227,7 +265,7 @@ public class MainGUI extends JFrame {
                 else if (comboBox.getSelectedItem() == "Year range") {
                     try {
                         textArea.setText("Loading...");
-                        data = controller.getYearRange(textField1.getText(), textField2.getText());
+                        data = controller.getByYearRange(textField1.getText(), textField2.getText());
                         ((DefaultTableModel)(table.getModel())).setDataVector(data, header);
                         textArea.setText("Successful!!");
                     } catch(Exception e1) {
@@ -237,7 +275,7 @@ public class MainGUI extends JFrame {
                 else if (comboBox.getSelectedItem() == "Year and ID") {
                     try {
                         textArea.setText("Loading...");
-                        data = controller.getRangeByIdYear(textField1.getText(), textField2.getText(),textField3.getText());
+                        data = controller.getByIdYearRange(textField1.getText(), textField2.getText(),textField3.getText());
                         ((DefaultTableModel)(table.getModel())).setDataVector(data, header);
                         textArea.setText("Successful!!");
                     } catch(Exception e1) {
@@ -252,10 +290,10 @@ public class MainGUI extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 try {
                     textArea.setText("Loading...");
-                    controller.DelAll();
+                    controller.delAll();
                     textArea.setText("Deleted all data from table, query executed successful!!");
                 } catch(Exception er) {
-                    JOptionPane.showMessageDialog(MainGUI.this, "Delete failed, please check your database with a CVEList table");
+                    JOptionPane.showMessageDialog(MainGUI.this, "Delete failed, please check your database");
                 }
             }
         });
@@ -279,13 +317,15 @@ public class MainGUI extends JFrame {
         //Event nut ?
         btnNote.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                JOptionPane.showMessageDialog(MainGUI.this, "Note:\n - Input ID must be typed in full length\n E.g. CVE-1999-0015 have ID number is \"0015\"");
+                JOptionPane.showMessageDialog(MainGUI.this, "Instruction:"
+                		+ "\n - Year or ID: full length ID or year"
+                		+ "\n E.g. \"CVE-2000\" or \"CVE-2008-0018\""
+                		+ "\n - Year range: type only year"
+                		+ "\n E.g. \"2001\" to \"2004\""
+                		+ "\n Year and ID: type full ID NUMBER"
+                		+ "\n E.g. CVE-1999-0015 have ID number is \"0015\"");
             }
         });
 
-    }
-
-    private Image scaleImage(Image image, int widthIconIm, int heightIconIm) {
-        return  image;
     }
 }
